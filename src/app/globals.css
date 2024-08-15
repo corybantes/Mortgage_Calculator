@@ -14,9 +14,21 @@
 }
 
 :root {
+  font-family: "Nunito_Sans var", sans-serif;
+  --font-family: "Nunito_Sans var", sans-serif;
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+}
+@layer primereact {
+  .p-component {
+    font-family: var(--font-family);
+  }
+}
+@font-face {
+  font-family: "Nunito_Sans var";
+  src: url(/public/NunitoSans-VariableFont_YTLC\,opsz\,wdth\,wght.ttf)
+    format("truetype");
 }
 
 @media (prefers-color-scheme: dark) {

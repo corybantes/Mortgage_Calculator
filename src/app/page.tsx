@@ -3,7 +3,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { PrimeReactProvider } from "primereact/api";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
-import { Nunito_Sans } from "next/font/google";
 import {
   InputNumber,
   InputNumberValueChangeEvent,
@@ -37,9 +36,8 @@ export default function Home() {
   const [HOA, setHOAvalue] = useState<number>(0);
   const downPaymentPrice = (downPayment * purchasePrice) / 100;
   const taxRate = (purchasePrice * annualTaxes) / 100;
-  const interestPrice = (interestRate * purchasePrice) / 100;
   const principalInterest = Math.floor(
-    ((purchasePrice - downPaymentPrice) / Mort + interestPrice) / 12
+    ((purchasePrice - downPaymentPrice) * (interestRate / 100)) / 12
   );
   const propertyTaxes = Math.floor(taxRate / 12);
   const homeInsurance = Math.floor(insurance / 12 + HOA);
@@ -75,7 +73,7 @@ export default function Home() {
     },
   ];
   const labelList = ({ values }) => (
-    <div className='flex flex-col font-[Nunito_Sans]'>
+    <div className='flex flex-col'>
       {values.map((item: any, index: any) => (
         <div className='flex-1 ' key={index}>
           <div className='flex flex-col'>
@@ -84,12 +82,12 @@ export default function Home() {
                 className='w-2 h-2 my-auto mr-2 rounded-full '
                 style={{ backgroundColor: item.color, color: item.color }}
               ></span>
-              <div className='w-full inline-flex justify-between'>
+              <div className='w-full justify-between inline-flex'>
                 <span className='text-secondary text-[15px]'>{item.label}</span>
                 <span className='font-bold text-black'>
                   ${formatter.format(item.price)}
                 </span>
-                <span className='font-bold text-black text-opacity-35'>
+                <span className='font-bold text-black text-opacity-35 '>
                   {item.value}%
                 </span>
               </div>
@@ -108,6 +106,12 @@ export default function Home() {
       detail: "Data Saved",
       life: 3000,
     });
+    setDownPayment(0);
+    setPurchasePrice(0);
+    setAnnualTaxes(0);
+    setInterestRate(0);
+    setInsurance(0);
+    setHOAvalue(0);
   };
 
   return (
@@ -160,7 +164,7 @@ export default function Home() {
               >
                 Down Payment
               </label>
-              <div className='p-inputgroup w-full h-[40px] border-none md:w-14rem'>
+              <div className='p-inputgroup w-full h-[40px] border-none'>
                 <InputNumber
                   inputId='down-payment'
                   value={downPayment}
@@ -168,7 +172,7 @@ export default function Home() {
                     setDownPayment(e.value)
                   }
                   suffix=' %'
-                  className='border-none'
+                  className=''
                 />
                 <span className='p-inputgroup-addon bg-white border-l-0'>
                   $
@@ -227,7 +231,7 @@ export default function Home() {
                     setAnnualTaxes(e.value)
                   }
                   suffix=' %'
-                  className='w-full h-[40px] p-inputnumber-input-bold'
+                  className='w-full h-[40px]'
                 />
                 <span className='p-inputgroup-addon bg-white border-l-0 '>
                   $
@@ -260,7 +264,7 @@ export default function Home() {
                   }
                   //prefix='$'
                   suffix=' /yr'
-                  className='w-full h-[40px] font-bold aria-valuenow:font-bold'
+                  className='w-full h-[40px] font-bold'
                 />
               </div>
             </div>
@@ -308,6 +312,7 @@ export default function Home() {
                     labelOrientation='vertical'
                     labelList={labelList}
                     className='w-full'
+                    min={0}
                   />
                 </div>
               </div>
