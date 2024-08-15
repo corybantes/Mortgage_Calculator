@@ -3,7 +3,11 @@ import { Inter, Nunito_Sans } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
-const nunito_Sans = Nunito_Sans({ subsets: ["latin"] });
+const nunito_Sans = Nunito_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  adjustFontFallback: false,
+});
 
 export const metadata: Metadata = {
   title: "Mortgage Calculator",

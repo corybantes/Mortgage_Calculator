@@ -82,12 +82,12 @@ export default function Home() {
                 className='w-2 h-2 my-auto mr-2 rounded-full '
                 style={{ backgroundColor: item.color, color: item.color }}
               ></span>
-              <div className='w-full justify-between inline-flex'>
+              <div className='w-full inline-flex justify-between'>
                 <span className='text-secondary text-[15px]'>{item.label}</span>
                 <span className='font-bold text-black'>
                   ${formatter.format(item.price)}
                 </span>
-                <span className='font-bold text-black text-opacity-35 '>
+                <span className='font-bold text-black text-opacity-35'>
                   {item.value}%
                 </span>
               </div>
