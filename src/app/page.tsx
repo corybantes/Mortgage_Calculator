@@ -72,7 +72,11 @@ export default function Home() {
       value: homeInsurancePercent.toFixed(1),
     },
   ];
-  const labelList = ({ values }) => (
+  type map = any;
+  interface LabelListProps {
+    values: string | number | map;
+  }
+  const labelList: React.FC<LabelListProps> = ({ values }) => (
     <div className='flex flex-col'>
       {values.map((item: any, index: any) => (
         <div className='flex-1 ' key={index}>
@@ -100,6 +104,7 @@ export default function Home() {
   const toast = useRef(null);
 
   const showSuccess = () => {
+    // @ts-ignore: Object is possibly 'null'.
     toast.current.show({
       severity: "success",
       summary: "Success",
@@ -145,6 +150,7 @@ export default function Home() {
                   inputId='purchase-price'
                   value={purchasePrice}
                   onValueChange={(e: InputNumberValueChangeEvent) =>
+                    // @ts-ignore: Object is possibly 'null'.
                     setPurchasePrice(e.value)
                   }
                   //prefix='$'
@@ -169,6 +175,7 @@ export default function Home() {
                   inputId='down-payment'
                   value={downPayment}
                   onValueChange={(e: InputNumberValueChangeEvent) =>
+                    // @ts-ignore: Object is possibly 'null'.
                     setDownPayment(e.value)
                   }
                   suffix=' %'
@@ -210,6 +217,7 @@ export default function Home() {
                 inputId='interest-rate'
                 value={interestRate}
                 onValueChange={(e: InputNumberValueChangeEvent) =>
+                  // @ts-ignore: Object is possibly 'null'.
                   setInterestRate(e.value)
                 }
                 suffix=' %'
@@ -228,6 +236,7 @@ export default function Home() {
                   inputId='taxes'
                   value={annualTaxes}
                   onValueChange={(e: InputNumberValueChangeEvent) =>
+                    // @ts-ignore: Object is possibly 'null'.
                     setAnnualTaxes(e.value)
                   }
                   suffix=' %'
@@ -260,6 +269,7 @@ export default function Home() {
                   inputId='insurance'
                   value={insurance}
                   onValueChange={(e: InputNumberValueChangeEvent) =>
+                    // @ts-ignore: Object is possibly 'null'.
                     setInsurance(e.value)
                   }
                   //prefix='$'
@@ -281,6 +291,7 @@ export default function Home() {
                   inputId='monthly-fees'
                   value={HOA}
                   onValueChange={(e: InputNumberValueChangeEvent) =>
+                    // @ts-ignore: Object is possibly 'null'.
                     setHOAvalue(e.value)
                   }
                   //prefix='$'
@@ -307,6 +318,7 @@ export default function Home() {
                 </div>
                 <div className='w-full card flex justify-content-center m-auto '>
                   <MeterGroup
+                    // @ts-ignore: Object is possibly 'null'.
                     values={values}
                     labelPosition='end'
                     labelOrientation='vertical'
